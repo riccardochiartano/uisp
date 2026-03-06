@@ -751,10 +751,10 @@ def render_uisp_fields(location="setup"):
 
 
 def render_setup():
-    st.title("🏀 Referto Basket — Impostazione partita")
+    st.title("🏀 Referto Basket")
 
     # ── IMPORT DA CSV ────────────────────────────────────────────
-    with st.expander("📂 Riprendi da CSV (partita precedente)", expanded=False):
+    with st.expander("📂 Riprendi da CSV", expanded=False):
         st.caption("Carica un CSV esportato da una sessione precedente per rigenerare il referto UISP senza reinserire tutti i dati.")
         uploaded = st.file_uploader("Carica file CSV", type=["csv"], key="csv_import")
         if uploaded is not None:
