@@ -785,16 +785,6 @@ def render_setup():
                 st.error(f"Errore nella lettura del CSV: {e}")
 
     st.divider()
-    with st.expander("ℹ️ Informazioni partita", expanded=True):
-        c1, c2, c3 = st.columns(3)
-        ss.match_date  = c1.date_input("Data partita", value=ss.match_date)
-        ss.location    = c2.text_input("Luogo / Palazzetto", value=ss.location)
-        ss.competition = c3.text_input("Competizione", value=ss.competition)
-        ss.campo       = st.text_input("Campo (per referto UISP)", value=ss.campo)
-
-    render_uisp_fields(location="setup")
-
-    st.divider()
     col_a, col_b = st.columns(2, gap="large")
 
     for col, letter in [(col_a, "A"), (col_b, "B")]:
@@ -832,6 +822,16 @@ def render_setup():
                         players.pop(i); st.rerun()
             else:
                 st.info("Nessun giocatore ancora.")
+
+    st.divider()
+    with st.expander("ℹ️ Informazioni partita", expanded=True):
+        c1, c2, c3 = st.columns(3)
+        ss.match_date  = c1.date_input("Data partita", value=ss.match_date)
+        ss.location    = c2.text_input("Luogo / Palazzetto", value=ss.location)
+        ss.competition = c3.text_input("Competizione", value=ss.competition)
+        ss.campo       = st.text_input("Campo (per referto UISP)", value=ss.campo)
+
+    render_uisp_fields(location="setup")
 
     st.divider()
     if st.button("🏀 INIZIA PARTITA", type="primary", use_container_width=True):
