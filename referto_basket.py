@@ -705,31 +705,31 @@ def render_uisp_fields(location="setup"):
             "Ingresso a pagamento", value=ss.get("ingresso_pagamento", False),
             key=f"uisp_ingresso_{location}")
 
-        st.divider()
-
-        # ── SPONSOR ───────────────────────────────────────────────
-        st.markdown("**Sponsor**")
-        cs1, cs2 = st.columns(2)
-        ss.sponsor_a = cs1.text_input(
-            f"Sponsor {ss.get('team_a_name','Squadra A')}",
-            value=ss.get("sponsor_a",""), key=f"uisp_spa_{location}")
-        ss.sponsor_b = cs2.text_input(
-            f"Sponsor {ss.get('team_b_name','Squadra B')}",
-            value=ss.get("sponsor_b",""), key=f"uisp_spb_{location}")
+        #st.divider()
+        #
+        ## ── SPONSOR ───────────────────────────────────────────────
+        #st.markdown("**Sponsor**")
+        #cs1, cs2 = st.columns(2)
+        #ss.sponsor_a = cs1.text_input(
+        #    f"Sponsor {ss.get('team_a_name','Squadra A')}",
+        #    value=ss.get("sponsor_a",""), key=f"uisp_spa_{location}")
+        #ss.sponsor_b = cs2.text_input(
+        #    f"Sponsor {ss.get('team_b_name','Squadra B')}",
+        #    value=ss.get("sponsor_b",""), key=f"uisp_spb_{location}")
 
         st.divider()
 
         # ── STAFF SQUADRE ─────────────────────────────────────────
         STAFF_ROLES = [
             ("allenatore",    "tess_allenatore",  "Allenatore"),
-            ("aiuto_allenatore", "tess_aiuto",    "Aiuto Allenatore"),
-            ("accompagnatore","tess_accompagnatore","Accompagnatore"),
-            ("dirigente",     "tess_dirigente",   "2° Dirigente"),
-            ("medico",        "tess_medico",      "Medico"),
-            ("dir_arbitri",   "tess_dir_arbitri", "Dir. addetto arbitri"),
-            ("massaggiatore", "tess_massaggiatore","Massaggiatore"),
-            ("scorer",        "tess_scorer",      "Scorer"),
-            ("prep_fisico",   "tess_prep_fisico", "Prep. Fisico"),
+        #    ("aiuto_allenatore", "tess_aiuto",    "Aiuto Allenatore"),
+        #    ("accompagnatore","tess_accompagnatore","Accompagnatore"),
+        #    ("dirigente",     "tess_dirigente",   "2° Dirigente"),
+        #    ("medico",        "tess_medico",      "Medico"),
+        #    ("dir_arbitri",   "tess_dir_arbitri", "Dir. addetto arbitri"),
+        #    ("massaggiatore", "tess_massaggiatore","Massaggiatore"),
+        #    ("scorer",        "tess_scorer",      "Scorer"),
+        #    ("prep_fisico",   "tess_prep_fisico", "Prep. Fisico"),
         ]
 
         col_a, col_b = st.columns(2)
@@ -744,10 +744,10 @@ def render_uisp_fields(location="setup"):
                         role_label, value=staff.get(name_key,""),
                         key=f"uisp_{letter}_{name_key}_{location}",
                         placeholder=role_label)
-                    staff[tess_key] = r2.text_input(
-                        "Tessera", value=staff.get(tess_key,""),
-                        key=f"uisp_{letter}_{tess_key}_{location}",
-                        placeholder="N° tessera", label_visibility="collapsed")
+                    #staff[tess_key] = r2.text_input(
+                    #    "Tessera", value=staff.get(tess_key,""),
+                    #    key=f"uisp_{letter}_{tess_key}_{location}",
+                    #    placeholder="N° tessera", label_visibility="collapsed")
 
 
 def render_setup():
