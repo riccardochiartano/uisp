@@ -752,6 +752,7 @@ def render_uisp_fields(location="setup"):
 
 def render_setup():
     st.title("🏀 Referto Basket")
+    st.divider()
 
     # ── IMPORT DA CSV ────────────────────────────────────────────
     with st.expander("📂 Riprendi da CSV", expanded=False):
