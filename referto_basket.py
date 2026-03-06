@@ -848,10 +848,10 @@ def render_setup():
 # ──────────────────────────────────────────────
 #  UISP PDF GENERATOR (referto da zero con ReportLab)
 # ──────────────────────────────────────────────
-"""
-Generatore referto ufficiale UISP Basket.
-generate_uisp_pdf(ss_dict) -> bytes
-"""
+#"""
+#Generatore referto ufficiale UISP Basket.
+#generate_uisp_pdf(ss_dict) -> bytes
+#"""
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
