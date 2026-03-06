@@ -1486,16 +1486,46 @@ def _draw_bottom(d, x0, y0, w, h, ss):
 # ──────────────────────────────────────────────
 def render_sidebar(game_active: bool):
     with st.sidebar:
-        st.header("Azioni")
+        #st.header("Azioni")
+        #
+        #render_uisp_fields(location="sidebar")
+        #st.divider()
 
-        render_uisp_fields(location="sidebar")
+        # Referto ufficiale UISP (generato da zero)
+        fname_base = f"referto_{ss.match_date.strftime('%Y%m%d')}"
+        st.subheader("Referto UISP")
+        try:
+            ss_dict = {k: ss[k] for k in ["team_a_name","team_b_name","players_a","players_b",
+                                           "stats","score_a","score_b","partials","quarter_times",
+                                           "match_date","competition","location","campo",
+                                           "time_start","phase","log"]}
+            uisp_bytes = generate_uisp_pdf(ss_dict)
+            st.download_button(
+                "Scarica referto UISP",
+                data=uisp_bytes,
+                file_name=f"referto_uisp_{fname_base}.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+            )
+        except Exception as e:
+            st.error(f"Errore UISP: {e}")
+
+        st.subheader("Export")
+        pdf_bytes = build_pdf()
+        #st.download_button("Scarica referto PDF", data=pdf_bytes,
+        #                   file_name=f"{fname_base}.pdf",
+        #                   mime="application/pdf", use_container_width=True)
+        st.download_button("Scarica log CSV", data=build_csv(),
+                           file_name=f"{fname_base}.csv",
+                           mime="text/csv", use_container_width=True)
+
         st.divider()
-
+        st.subheader("Partita")
         if game_active:
             if st.button("Annulla ultima azione", use_container_width=True):
                 undo_last(); st.rerun()
 
-            st.divider()
+            #st.divider()
             st.write(f"**Quarto corrente:** {quarter_label(ss.quarter)}")
             if st.button("Prossimo quarto / Supplementare", use_container_width=True):
                 next_quarter(); st.rerun()
@@ -1517,35 +1547,7 @@ def render_sidebar(game_active: bool):
             for k in list(ss.keys()): del ss[k]
             st.rerun()
 
-        st.divider()
-        st.subheader("Export")
-        fname_base = f"referto_{ss.match_date.strftime('%Y%m%d')}"
-        pdf_bytes = build_pdf()
-        st.download_button("Scarica referto PDF", data=pdf_bytes,
-                           file_name=f"{fname_base}.pdf",
-                           mime="application/pdf", use_container_width=True)
-        st.download_button("Scarica log CSV", data=build_csv(),
-                           file_name=f"{fname_base}.csv",
-                           mime="text/csv", use_container_width=True)
 
-        # Referto ufficiale UISP (generato da zero)
-        st.divider()
-        st.subheader("Referto UISP")
-        try:
-            ss_dict = {k: ss[k] for k in ["team_a_name","team_b_name","players_a","players_b",
-                                           "stats","score_a","score_b","partials","quarter_times",
-                                           "match_date","competition","location","campo",
-                                           "time_start","phase","log"]}
-            uisp_bytes = generate_uisp_pdf(ss_dict)
-            st.download_button(
-                "Scarica referto UISP",
-                data=uisp_bytes,
-                file_name=f"referto_uisp_{fname_base}.pdf",
-                mime="application/pdf",
-                use_container_width=True,
-            )
-        except Exception as e:
-            st.error(f"Errore UISP: {e}")
 
 # ──────────────────────────────────────────────
 #  PARTITA
